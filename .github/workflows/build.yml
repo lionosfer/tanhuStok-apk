@@ -10,9 +10,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: ZIP'i aç
-      run: unzip TanhuStokApp.zip
-    
     - name: Set up JDK
       uses: actions/setup-java@v3
       with:
@@ -22,14 +19,14 @@ jobs:
     - name: Setup Android SDK
       uses: android-actions/setup-android@v2
     
-    - name: gradlew izni ver
-      run: chmod +x TanhuStokApp/gradlew
+    - name: Make gradlew executable
+      run: chmod +x gradlew
     
     - name: Build APK
-      run: cd TanhuStokApp && ./gradlew assembleDebug
+      run: ./gradlew assembleDebug
     
     - name: Upload APK
       uses: actions/upload-artifact@v3
       with:
         name: TanhuStok-APK
-        path: TanhuStokApp/app/build/outputs/apk/debug/app-debug.apk
+        path: app/build/outputs/apk/debug/app-debug.apk
